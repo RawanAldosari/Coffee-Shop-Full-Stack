@@ -5,9 +5,9 @@ from jose import jwt
 from urllib.request import urlopen
 
 
-AUTH0_DOMAIN = 'udacity-fsnd.auth0.com'
+AUTH0_DOMAIN = 'rawanmac.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'dev'
+API_AUDIENCE = 'coffee-shop'
 
 ## AuthError Exception
 '''
@@ -75,13 +75,13 @@ def get_token_auth_header():
     return true otherwise
 '''
 def check_permissions(permission, payload):
-    if 'permissions' not in payload: 
-            raise AuthError({
+    if 'permissions' not in payload:
+        raise AuthError({
         'code': 'invalid_header',
         'description': 'Permissions not included'
         }, 401)
 
-    if permission not in payload('permissions'): 
+    if permission not in payload['permissions']: 
         raise AuthError({
         'code': 'invalid_header',
         'description': 'Required permission not found'
